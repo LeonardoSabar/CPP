@@ -11,13 +11,7 @@ int	main(int argc, char **argv)
 		for (words = 1; argv[words] != '\0'; words++)
 		{
 			line = argv[words];
-				transform(line.begin(), line.end(), line.begin(), ::toupper);
-			// unsigned long i;
-			// for(i = 0 ; i < line.length(); i++)
-			// {
-			// 	if (line[i] >= 'a' && line[i] <= 'z')
-			// 		line[i] = line[i] - 32;
-			// }
+			transform(line.begin(), line.end(), line.begin(), ::toupper);
 			cout << line;
 		}
 		cout << endl;
