@@ -1,6 +1,4 @@
-#include <iostream>
-#include <string>
-#include <algorithm>
+#include "../include/megaphone.hpp"
 
 using namespace std;
 
@@ -13,12 +11,13 @@ int	main(int argc, char **argv)
 		for (words = 1; argv[words] != '\0'; words++)
 		{
 			line = argv[words];
-			unsigned long i;
-			for(i = 0 ; i < line.length(); i++)
-			{
-				if (line[i] >= 'a' && line[i] <= 'z')
-					line[i] = line[i] - 32;
-			}
+				transform(line.begin(), line.end(), line.begin(), ::toupper);
+			// unsigned long i;
+			// for(i = 0 ; i < line.length(); i++)
+			// {
+			// 	if (line[i] >= 'a' && line[i] <= 'z')
+			// 		line[i] = line[i] - 32;
+			// }
 			cout << line;
 		}
 		cout << endl;
