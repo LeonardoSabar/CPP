@@ -12,12 +12,16 @@ void	displayMain()
 int	main()
 {
 	PhoneBook	phoneBook;
-	int	option = 0;
+	std::string option;
 	while (1)
 	{
 		displayMain();
 		std::cin >> option;
-		if (option == 3)
+		if (option.compare("1") == 0 || option.compare("ADD") == 0) //Tirar opcao de numero
+			phoneBook.addContact();
+		else if (option.compare("2") == 0 || option.compare("SEARCH") == 0)
+			phoneBook.searchContact();
+		else if (option.compare("3") == 0 || option.compare("EXIT") == 0)
 			break;
 		else
 			std::cout << "Invalid option" << std::endl;
