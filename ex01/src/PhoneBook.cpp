@@ -93,18 +93,21 @@ void PhoneBook::addContact()
 }
 
 void PhoneBook::displayContact(Contact c) {
-	std::cout << std::setw(10) << c.getId() << "|"
-			<< std::setw(10) << c.getFirstName() << "|"
-			<< std::setw(10) << c.getLastName() << "|"
-			<< std::setw(10) << c.getPhoneNumber() << std::endl;
+	std::cout << "|" << std::setw(10) << std::setfill(' ') << c.getId() << "|"
+			  << "|" << std::setw(10) << std::setfill(' ') << c.getFirstName() << "|"
+			  << "|" << std::setw(10) << std::setfill(' ') << c.getLastName() << "|"
+			  << "|" << std::setw(10) << std::setfill(' ') << c.getPhoneNumber()
+			  << "|" << std::endl;
 }
 
 void PhoneBook::searchContact()
 {
-	std::cout << std::setw(10) << "Index" << "|"
-			  << std::setw(10) << "First Name" << "|"
-			  << std::setw(10) << "Last Name" << "|"
-			  << std::setw(10) << "Phone Number" << std::endl;
+	std::cout << "|" << std::setw(10) << std::setfill(' ') << "Index" << "|"
+			  << "|" << std::setw(10) << std::setfill(' ') << "First Name" << "|"
+			  << "|" << std::setw(10) << std::setfill(' ') << "Last Name" << "|"
+			  << "|" << std::setw(10) << std::setfill(' ') << "Phone Number"
+			  << "|" << std::endl;
+
 	for (int i = 1; i <= contactCount; i++)
 	{
 		PhoneBook::displayContact(PhoneBook::contacts[i]);
