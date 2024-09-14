@@ -1,6 +1,7 @@
 #include "../include/PhoneBook.hpp"
 #include <iostream>
 
+
 void	displayMain()
 {
 	std::cout << "Choose one of the numbers below: " << std::endl;
@@ -9,6 +10,7 @@ void	displayMain()
 	std::cout << "3 - EXIT" << std::endl;
 }
 
+
 int	main()
 {
 	PhoneBook	phoneBook;
@@ -16,15 +18,16 @@ int	main()
 	while (1)
 	{
 		displayMain();
+		std::cout << "Enter your option: ";
 		std::cin >> option;
-		if (option.compare("1") == 0 || option.compare("ADD") == 0) //Tirar opcao de numero
-			phoneBook.addContact();
-		else if (option.compare("2") == 0 || option.compare("SEARCH") == 0)
-			phoneBook.searchContact();
-		else if (option.compare("3") == 0 || option.compare("EXIT") == 0)
-			break;
-		else
-			std::cout << "Invalid option" << std::endl;
+			if (option.compare("1") == 0 || option.compare("ADD") == 0)
+				phoneBook.addContact();
+			else if (option.compare("2") == 0 || option.compare("SEARCH") == 0)
+				phoneBook.searchContact();
+			else if (option.compare("3") == 0 || option.compare("EXIT") == 0)
+				break;
+			else
+				std::cout << "Invalid option" << std::endl;
 	}
 	return (0);
 }
