@@ -101,26 +101,29 @@ std::string truncate(std::string str, size_t width) {
 
 
 void PhoneBook::displayContact(Contact c) {
-	std::cout << "|" << std::setw(10) << std::setfill(' ') << truncate(c.getId(), 10) << "|"
-			  << "|" << std::setw(10) << std::setfill(' ') << truncate(c.getFirstName(), 10) << "|"
-			  << "|" << std::setw(10) << std::setfill(' ') << truncate(c.getLastName(), 10) << "|"
-			  << "|" << std::setw(10) << std::setfill(' ') << truncate(c.getNickname(), 10)
-			  << "|" << std::endl;
+	std::cout << BBLU << "|" << RST << std::setw(10) << std::setfill(' ') << truncate(c.getId(), 10) << BBLU << "|" << RST
+			  << BBLU << "|" << RST << std::setw(10) << std::setfill(' ') << truncate(c.getFirstName(), 10) << BBLU << "|" << RST
+			  << BBLU << "|" << RST << std::setw(10) << std::setfill(' ') << truncate(c.getLastName(), 10) << BBLU << "|" << RST
+			  << BBLU << "|" << RST << std::setw(10) << std::setfill(' ') << truncate(c.getNickname(), 10)
+			  << BBLU << "|" << RST << std::endl;
 }
 
 void PhoneBook::searchContact()
 {
-	std::cout << "|" << std::setw(10) << std::setfill(' ') << "Index" << "|"
-			  << "|" << std::setw(10) << std::setfill(' ') << "First Name" << "|"
-			  << "|" << std::setw(10) << std::setfill(' ') << "Last Name" << "|"
-			  << "|" << std::setw(10) << std::setfill(' ') << "Nickname"
-			  << "|" << std::endl;
+	std::cout << BBLU << "+----------------------------------------------+" << RST << std::endl;
+	std::cout << BBLU << "|" << RST << std::setw(10) << std::setfill(' ') << "Index" << BBLU << "|" << RST
+			  << BBLU << "|" << RST << std::setw(10) << std::setfill(' ') << "First Name" << BBLU << "|" << RST
+			  << BBLU << "|" << RST << std::setw(10) << std::setfill(' ') << "Last Name" << BBLU << "|" << RST
+			  << BBLU << "|" << RST << std::setw(10) << std::setfill(' ') << "Nickname"
+			  << BBLU << "|" << RST << std::endl;
+	std::cout << BBLU << "+----------------------------------------------+" << RST << std::endl;
 
 	for (int i = 1; i <= contactCount; i++)
 	{
 		PhoneBook::displayContact(PhoneBook::contacts[i]);
 	}
 	std::string index;
+	std::cout << BBLU << "+----------------------------------------------+" << RST << std::endl;
 	std::cout << "Enter the index of the contact: ";
 	std::cin >> index;
 
