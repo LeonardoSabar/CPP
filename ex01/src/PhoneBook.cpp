@@ -92,11 +92,19 @@ void PhoneBook::addContact()
 	PhoneBook::contacts[PhoneBook::contactCount] = contact;
 }
 
+std::string truncate(std::string str, size_t width) {
+	if (str.length() > width) {
+		return str.substr(0, width - 1) + ".";
+	}
+	return str;
+}
+
+
 void PhoneBook::displayContact(Contact c) {
-	std::cout << "|" << std::setw(10) << std::setfill(' ') << c.getId() << "|"
-			  << "|" << std::setw(10) << std::setfill(' ') << c.getFirstName() << "|"
-			  << "|" << std::setw(10) << std::setfill(' ') << c.getLastName() << "|"
-			  << "|" << std::setw(10) << std::setfill(' ') << c.getPhoneNumber()
+	std::cout << "|" << std::setw(10) << std::setfill(' ') << truncate(c.getId(), 10) << "|"
+			  << "|" << std::setw(10) << std::setfill(' ') << truncate(c.getFirstName(), 10) << "|"
+			  << "|" << std::setw(10) << std::setfill(' ') << truncate(c.getLastName(), 10) << "|"
+			  << "|" << std::setw(10) << std::setfill(' ') << truncate(c.getNickname(), 10)
 			  << "|" << std::endl;
 }
 
@@ -105,7 +113,7 @@ void PhoneBook::searchContact()
 	std::cout << "|" << std::setw(10) << std::setfill(' ') << "Index" << "|"
 			  << "|" << std::setw(10) << std::setfill(' ') << "First Name" << "|"
 			  << "|" << std::setw(10) << std::setfill(' ') << "Last Name" << "|"
-			  << "|" << std::setw(10) << std::setfill(' ') << "Phone Number"
+			  << "|" << std::setw(10) << std::setfill(' ') << "Nickname"
 			  << "|" << std::endl;
 
 	for (int i = 1; i <= contactCount; i++)
