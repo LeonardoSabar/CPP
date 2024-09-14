@@ -121,7 +121,8 @@ void PhoneBook::searchContact()
 	std::stringstream ss(index);
 	int indexInt;
 	ss >> indexInt;
-	if (indexInt < 1 || indexInt >= contactCount)
+	std::cout << "Index: " << indexInt << std::endl;
+	if (indexInt < 0 || indexInt > contactCount)
 	{
 		std::cout << "Invalid index" << std::endl;
 		return;
