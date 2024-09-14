@@ -1,70 +1,47 @@
 #ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#define PHONEBOOK_HPP
 
-#include "utils.hpp"
+#include <iostream>
 #include <string>
+
+
 
 class Contact
 {
 	private:
-		std::string firstName;
-		std::string lastName;
-		std::string nickName;
-		std::string phoneNumber;
-		std::string darkestSecret;
-
+		std::string	firstName;
+		std::string	lastName;
+		std::string	nickname;
+		std::string	phoneNumber;
+		std::string	darkestSecret;
 	public:
-		//Getters
-		std::string getFirstName()
-		{
-			return (firstName);
-		}
-		std::string getLastName()
-		{
-			return (lastName);
-		}
-		std::string getNickname()
-		{
-			return (nickName);
-		}
-		std::string getPhoneNumber()
-		{
-			return (phoneNumber);
-		}
-		std::string getDarkSecret()
-		{
-			return (darkestSecret);
-		}
+		//Setters and Getters
+		std::string	getFirstName();
+		std::string	getLastName();
+		std::string	getNickname();
+		std::string	getPhoneNumber();
+		std::string	getDarkestSecret();
 
-		//Setters
-		void setFirstName(std::string firstName)
-		{
-			this->firstName = firstName;
-		}
-		void setLastName(std::string lastName)
-		{
-			this->lastName = lastName;
-		}
-		void setNickname(std::string nickName)
-		{
-			this->nickName = nickName;
-		}
-		void setPhoneNumber(std::string phoneNumber)
-		{
-			this->phoneNumber = phoneNumber;
-		}
-		void setDarkestSecret(std:: string darkestSecret)
-		{
-			this->darkestSecret = darkestSecret;
-		}
+		void	setFirstName(std::string firstName);
+		void	setLastName(std::string lastName);
+		void	setNickname(std::string nickname);
+		void	setPhoneNumber(std::string phoneNumber);
+		void	setDarkestSecret(std::string darkestSecret);
 
+		void	displayContact();
 };
 
 class PhoneBook
 {
-	Contact contacts[8];
-	unsigned int idx;
+	private:
+		Contact	contacts[8];
+		int		contactCount;
+	public:
+		void	addContact();
+		void	searchContact();
+};
+
+void	displayMain();
 
 
-}
 #endif
