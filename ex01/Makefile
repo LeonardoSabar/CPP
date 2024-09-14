@@ -6,7 +6,9 @@ SRCS_PATH	:= ./src/
 HEADERS		:= -I ./include
 
 SRCS		:= $(addprefix $(SRCS_PATH), \
-				PhoneBook.cpp)
+				PhoneBook.cpp \
+				main.cpp \
+				Contact.cpp)
 
 OBJS		:= $(SRCS:$(SRCS_PATH)%.cpp=obj/%.o)
 

@@ -1,5 +1,10 @@
 #include "../include/PhoneBook.hpp"
 
+void Contact::setId(std::string id)
+{
+    this->id = id;
+}
+
 void Contact::setFirstName(std::string firstName)
 {
     this->firstName = firstName;
@@ -23,6 +28,11 @@ void Contact::setPhoneNumber(std::string phoneNumber)
 void Contact::setDarkestSecret(std::string darkestSecret)
 {
     this->darkestSecret = darkestSecret;
+}
+
+std::string Contact::getId()
+{
+    return (this->id);
 }
 
 std::string Contact::getFirstName()
@@ -49,4 +59,3 @@ std::string Contact::getDarkestSecret()
 {
     return (this->darkestSecret);
 }
-
