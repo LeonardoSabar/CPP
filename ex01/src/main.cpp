@@ -1,13 +1,12 @@
 #include "../include/PhoneBook.hpp"
-#include <iostream>
 
 
 void	displayMain()
 {
-	std::cout << "Choose one of the numbers below: " << std::endl;
-	std::cout << "1 - ADD" << std::endl;
-	std::cout << "2 - SEARCH" << std::endl;
-	std::cout << "3 - EXIT" << std::endl;
+	std::cout << "Choose one of the numbers below: "					<< std::endl;
+	std::cout << BRED << "1 " << RST << BOLD << "- ADD"		<< RST		<< std::endl;
+	std::cout << BRED << "2 " << RST << BOLD << "- SEARCH"	<< RST		<< std::endl;
+	std::cout << BRED << "3 " << RST << BOLD << "- EXIT"	<< RST		<< std::endl;
 }
 
 
@@ -19,7 +18,7 @@ int	main()
 	while (1)
 	{
 		displayMain();
-		std::cout << "Enter your option" << BLNK << ": " << RST;
+		std::cout << "Enter your option" << BLNK << ": " << RST << std::endl;
 		std::cin >> option;
 			if (option.compare("1") == 0 || option.compare("ADD") == 0)
 				phoneBook.addContact();

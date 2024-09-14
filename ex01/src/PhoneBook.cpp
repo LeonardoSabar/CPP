@@ -124,7 +124,7 @@ void PhoneBook::searchContact()
 	}
 	std::string index;
 	std::cout << BBLU << "+----------------------------------------------+" << RST << std::endl;
-	std::cout << "Enter the index of the contact: ";
+	std::cout << "Enter the index of the contact: " << std::endl;
 	std::cin >> index;
 
 	if (index.length() != 1 || !isdigit(index[0]))
@@ -138,7 +138,7 @@ void PhoneBook::searchContact()
 	std::cout << "Index: " << indexInt << std::endl;
 	if (indexInt < 0 || indexInt > contactCount)
 	{
-		std::cout << "Invalid index" << std::endl;
+		std::cout << BRED << "Invalid index!" << RST << std::endl << std::endl;
 		return;
 	}
 	Contact c = contacts[indexInt];
