@@ -24,7 +24,7 @@ int validInput(std::string input, int option)
 	{
 		if (input.length() <= 1 || input.length() >= 50)
 		{
-			std::cout << "Invalid input! The name must be between 1 and 30 characters" << std::endl;
+			std::cout <<  std::endl << RED << "Invalid input! The name must be between 1 and 30 characters" << RST << std::endl;
 			return (1);
 		}
 		int inputLen = input.length();
@@ -32,7 +32,7 @@ int validInput(std::string input, int option)
 		{
 			if (!isalpha(input[i]))
 			{
-				std::cout << "Invalid input! The name must contain only letters and spaces" << std::endl;
+				std::cout <<  std::endl << RED << "Invalid input! The name must contain only letters and spaces" << RST << std::endl;
 				return (1);
 			}
 		}
@@ -41,15 +41,15 @@ int validInput(std::string input, int option)
 	{
 		if (input.length() <= 1 || input.length() >= 11)
 		{
-			std::cout << "Invalid input! The phone number must be between 1 and 10 characters" << std::endl;
+			std::cout << std::endl << RED << "Invalid input! The phone number must be between 1 and 10 characters" << RST << std::endl;
 			return (1);
 		}
 		int inputLen = input.length();
 		for (int i = 0; i < inputLen; i++)
 		{
-			if (!isdigit(input[i]) || !isspace(input[i]) || input[i] != '+' || input[i] != '(' || input[i] != ')')
+			if (!isdigit(input[i]) && input[i] != '+' && input[i] != '(' && input[i] != ')')
 			{
-				std::cout << "Invalid input! The phone number must contain valid characters" << std::endl;
+				std::cout << std::endl << RED << "Invalid input! The phone number must contain valid characters, please try again!" << RST << std::endl;
 				return (1);
 			}
 		}
@@ -80,6 +80,8 @@ void PhoneBook::addContact()
 	contact.setNickname(nickname);
 	std::cout << "Enter the phone number: ";
 	std::cin >> phoneNumber;
+	if (validInput(phoneNumber, 3))
+		return;
 	contact.setPhoneNumber(phoneNumber);
 	std::cout << "Enter the darkest secret: ";
 	std::cin >> darkestSecret;

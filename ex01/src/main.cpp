@@ -3,7 +3,10 @@
 
 void	displayMain()
 {
-	std::cout << "Choose one of the numbers below: "					<< std::endl;
+	std::cout << BBLU << "+----------------------------------------------+" << RST << std::endl;
+	std::cout << std::setw(27) << "PHONEBOOK" << std::endl;
+	std::cout << BBLU << "+----------------------------------------------+" << RST << std::endl;
+	std::cout << "Choose one of the following options:" << std::endl;
 	std::cout << BRED << "1 " << RST << BOLD << "- ADD"		<< RST		<< std::endl;
 	std::cout << BRED << "2 " << RST << BOLD << "- SEARCH"	<< RST		<< std::endl;
 	std::cout << BRED << "3 " << RST << BOLD << "- EXIT"	<< RST		<< std::endl;
@@ -27,7 +30,7 @@ int	main()
 			else if (option.compare("3") == 0 || option.compare("EXIT") == 0)
 				break;
 			else
-				std::cout << "Invalid option" << std::endl;
+				std::cout << RED << "Invalid option. Please try again!" << RST << std::endl << std::endl;
 	}
 	return (0);
 }
