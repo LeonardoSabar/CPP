@@ -21,7 +21,7 @@ int	main()
 	while (1)
 	{
 		displayMain();
-		std::cout << "Enter your option" << BLNK << ": " << RST << std::endl;
+		std::cout << std::endl << BRED << "Enter your option" << BLNK << ": " << RST;
 		std::cin >> option;
 			if (option.compare("1") == 0 || option.compare("ADD") == 0)
 				phoneBook.addContact();
@@ -30,7 +30,7 @@ int	main()
 			else if (option.compare("3") == 0 || option.compare("EXIT") == 0)
 				break;
 			else
-				std::cout << RED << "Invalid option. Please try again!" << RST << std::endl << std::endl;
+				std::cout << BRED << "Invalid option. Please try again!" << RST << std::endl << std::endl;
 	}
 	return (0);
 }
