@@ -62,7 +62,7 @@ void PhoneBook::addContact()
 		PhoneBook::contactCount = 1;
 
 	int valueField = 1;
-	while (valueField < 2)
+	while (valueField < 3)
 	{
 		int notValid = 1;
 		while (notValid == 1 && valueField == 1)
@@ -81,17 +81,28 @@ void PhoneBook::addContact()
 			}
 		
 		}
+		while (notValid == 1 && valueField == 2)
+		{
+			std::cout << "Enter the last name: ";
+			std::cin >> lastName;
+			if (validInput(lastName, 2) == 0)
+			{
+				notValid = 0;
+				contact.setLastName(lastName);
+				valueField++;
+			}
+		}
 	}
 
 	/* std::cout << "Enter the first name: ";
 	std::cin >> firstName;
 	if (validInput(firstName, 2))
 		return;
-	contact.setFirstName(firstName); */
+	contact.setFirstName(firstName); 
 	std::cout << "Enter the last name: ";
 	std::cin >> lastName;
 	if (validInput(lastName, 2))
-		return;
+		return; */
 	contact.setLastName(lastName);
 	std::cout << "Enter the nickname: ";
 	std::cin >> nickname;
