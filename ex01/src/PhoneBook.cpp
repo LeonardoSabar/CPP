@@ -15,7 +15,7 @@ int validInput(std::string &input, int option)
 		{
 			if (!isalpha(input[i]) || isspace(input[i]))
 			{
-				std::cout << "Invalid input! The name must contain only letters" << std::endl;
+				std::cout << "Invalid input! The name must contain only letters!" << std::endl;
 				return (1);
 			}
 		}
@@ -65,27 +65,34 @@ void PhoneBook::addContact()
 	while (valueField < 3)
 	{
 		int notValid = 1;
-		while (notValid == 1 && valueField == 1)
+		while (valueField == 1)
 		{
-			std::cout << "Enter the first name: ";
-			std::cin >> firstName;
-			if (validInput(firstName, 1) == 0)
+			std::cin.ignore(1000, '\n');
+			while(notValid == 1)
 			{
-				notValid = 0;
-				contact.setFirstName(firstName);
-				valueField++;
+				std::cout << "Enter the first name: ";
+				std::getline(std::cin, firstName);
+				if (validInput(firstName, 1) == 0)
+				{
+					notValid = 0;
+					contact.setFirstName(firstName);
+					valueField++;
+				}
 			}
-		
 		}
-		while (notValid == 1 && valueField == 2)
+		while (valueField == 2)
 		{
-			std::cout << "Enter the last name: ";
-			std::cin >> lastName;
-			if (validInput(lastName, 2) == 0)
+			notValid = 1;
+			while(notValid == 1)
 			{
-				notValid = 0;
-				contact.setLastName(lastName);
-				valueField++;
+				std::cout << "Enter the last name: ";
+				std::getline(std::cin, lastName);
+				if (validInput(lastName, 1) == 0)
+				{
+					notValid = 0;
+					contact.setLastName(lastName);
+					valueField++;
+				}
 			}
 		}
 	}
