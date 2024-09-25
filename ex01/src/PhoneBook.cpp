@@ -60,11 +60,34 @@ void PhoneBook::addContact()
 	std::string id, input, firstName, lastName, nickname, phoneNumber, darkestSecret;
 	if (PhoneBook::contactCount >= 8)
 		PhoneBook::contactCount = 1;
-	std::cout << "Enter the first name: ";
+
+	int valueField = 1;
+	while (valueField < 2)
+	{
+		int notValid = 1;
+		while (notValid == 1 && valueField == 1)
+		{
+			
+			while(notValid == 1)
+			{
+				std::cout << "Enter the first name: ";
+				std::cin >> firstName;
+				if (validInput(firstName, 1) == 0)
+				{
+					notValid = 0;
+					contact.setFirstName(firstName);
+					valueField++;
+				}
+			}
+		
+		}
+	}
+
+	/* std::cout << "Enter the first name: ";
 	std::cin >> firstName;
 	if (validInput(firstName, 2))
 		return;
-	contact.setFirstName(firstName);
+	contact.setFirstName(firstName); */
 	std::cout << "Enter the last name: ";
 	std::cin >> lastName;
 	if (validInput(lastName, 2))
