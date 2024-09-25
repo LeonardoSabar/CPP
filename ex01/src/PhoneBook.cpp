@@ -1,7 +1,7 @@
 #include "../include/PhoneBook.hpp"
 
 
-int validInput(std::string input, int option)
+int validInput(std::string &input, int option)
 {
 	if (option == 1)
 	{
@@ -22,20 +22,17 @@ int validInput(std::string input, int option)
 	}
 	else if (option == 2)
 	{
-		if (input.length() <= 1 || input.length() >= 50)
-		{
-			std::cout <<  std::endl << RED << "Invalid input! The name must be between 1 and 30 characters" << RST << std::endl;
+		if (input.empty() || input.size() < 2 || input.size() >= 30)
 			return (1);
-		}
-		int inputLen = input.length();
-		for (int i = 0; i < inputLen; i++)
+			std::string::const_iterator it;
+		for (it = input.begin(); it != input.end(); it++)
 		{
-			if (!isalpha(input[i]))
+			if (!std::isalpha(*it) && !std::isspace(*it))
 			{
-				std::cout <<  std::endl << RED << "Invalid input! The name must contain only letters and spaces" << RST << std::endl;
+				std::cout << std::endl << RED << "Invalid input! The name must contain only letters and spaces" << RST << std::endl;
 				return (1);
 			}
-		}
+		} 
 	}
 	else if (option == 3)
 	{
@@ -65,7 +62,7 @@ void PhoneBook::addContact()
 		PhoneBook::contactCount = 1;
 	std::cout << "Enter the first name: ";
 	std::cin >> firstName;
-	if (validInput(firstName, 1))
+	if (validInput(firstName, 2))
 		return;
 	contact.setFirstName(firstName);
 	std::cout << "Enter the last name: ";
@@ -85,13 +82,25 @@ void PhoneBook::addContact()
 	contact.setPhoneNumber(phoneNumber);
 	std::cout << "Enter the darkest secret: ";
 	std::cin >> darkestSecret;
+	int notValid = 1;
+	while (notValid == 1)
+	{
+		if (darkestSecret.length() <= 1 || darkestSecret.length() >= 30)
+		{
+			std::cout << "Invalid input! The darkest secret must be between 1 and 30 characters" << std::endl;
+			std::cout << "Enter the darkest secret again: ";
+			std::cin >> darkestSecret;
+		}
+		else
+			notValid = 0;
+	} 
 	contact.setDarkestSecret(darkestSecret);
-	PhoneBook::contactCount++;
 	std::stringstream ss;
-	ss << PhoneBook::contactCount;
+	ss << PhoneBook::contactCount + 1;
 	std::string idStr = ss.str();
 	contact.setId(idStr);
 	PhoneBook::contacts[PhoneBook::contactCount] = contact;
+	PhoneBook::contactCount++;
 }
 
 std::string truncate(std::string str, size_t width) {
@@ -100,7 +109,6 @@ std::string truncate(std::string str, size_t width) {
 	}
 	return str;
 }
-
 
 void PhoneBook::displayContact(Contact c) {
 	std::cout << BBLU << "|" << RST << std::setw(10) << std::setfill(' ') << truncate(c.getId(), 10) << BBLU << "|" << RST

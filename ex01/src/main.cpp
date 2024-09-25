@@ -30,7 +30,7 @@ int	main()
 			else if (option.compare("3") == 0 || option.compare("EXIT") == 0)
 				break;
 			else
-				std::cout << BRED << "Invalid option. Please try again!" << RST << std::endl << std::endl;
+				std::cout << std::endl << BRED << "Invalid option. Please try again!" << RST << std::endl << std::endl;
 	}
 	return (0);
 }

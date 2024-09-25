@@ -96,5 +96,6 @@
 #define SWIMMER      "\U0001F3CA"  // 🏊 - Nadador
 #define DANCER       "\U0001F483"  // 💃 - Dançarina
 #define GUITAR       "\U0001F3B8"  // 🎸 - Guitarra
+#define PHONE        "\U0001F4DE"  // 📞 - Telefone
 
 #endif
