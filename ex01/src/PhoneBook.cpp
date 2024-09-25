@@ -62,7 +62,7 @@ void PhoneBook::addContact()
 		PhoneBook::contactCount = 1;
 
 	int valueField = 1;
-	while (valueField < 3)
+	while (valueField < 6)
 	{
 		int notValid = 1;
 		while (valueField == 1)
@@ -87,7 +87,7 @@ void PhoneBook::addContact()
 			{
 				std::cout << "Enter the last name: ";
 				std::getline(std::cin, lastName);
-				if (validInput(lastName, 1) == 0)
+				if (validInput(lastName, 2) == 0)
 				{
 					notValid = 0;
 					contact.setLastName(lastName);
@@ -95,49 +95,59 @@ void PhoneBook::addContact()
 				}
 			}
 		}
-	}
-
-	/* std::cout << "Enter the first name: ";
-	std::cin >> firstName;
-	if (validInput(firstName, 2))
-		return;
-	contact.setFirstName(firstName); 
-	std::cout << "Enter the last name: ";
-	std::cin >> lastName;
-	if (validInput(lastName, 2))
-		return; */
-	contact.setLastName(lastName);
-	std::cout << "Enter the nickname: ";
-	std::cin >> nickname;
-	if (validInput(nickname, 2))
-		return;
-	contact.setNickname(nickname);
-	std::cout << "Enter the phone number: ";
-	std::cin >> phoneNumber;
-	if (validInput(phoneNumber, 3))
-		return;
-	contact.setPhoneNumber(phoneNumber);
-	std::cout << "Enter the darkest secret: ";
-	std::cin >> darkestSecret;
-	int notValid = 1;
-	while (notValid == 1)
-	{
-		if (darkestSecret.length() <= 1 || darkestSecret.length() >= 30)
+		while (valueField == 3)
 		{
-			std::cout << "Invalid input! The darkest secret must be between 1 and 30 characters" << std::endl;
-			std::cout << "Enter the darkest secret again: ";
-			std::cin >> darkestSecret;
+			notValid = 1;
+			while(notValid == 1)
+			{
+				std::cout << "Enter the nickname: ";
+				std::getline(std::cin, nickname);
+				if (validInput(nickname, 2) == 0)
+				{
+					notValid = 0;
+					contact.setNickname(nickname);
+					valueField++;
+				}
+			}
 		}
-		else
-			notValid = 0;
-	} 
-	contact.setDarkestSecret(darkestSecret);
+		while (valueField == 4)
+		{
+			notValid = 1;
+			while(notValid == 1)
+			{
+				std::cout << "Enter the phone number: ";
+				std::getline(std::cin, phoneNumber);
+				if (validInput(phoneNumber, 3) == 0)
+				{
+					notValid = 0;
+					contact.setPhoneNumber(phoneNumber);
+					valueField++;
+				}
+			}
+		}
+		while (valueField == 5)
+		{
+			notValid = 1;
+			while(notValid == 1)
+			{
+				std::cout << "Enter the darkest secret: ";
+				std::getline(std::cin, darkestSecret);
+				if (validInput(darkestSecret, 2) == 0)
+				{
+					notValid = 0;
+					contact.setDarkestSecret(darkestSecret);
+					valueField++;
+				}
+			}
+		}
+	
 	std::stringstream ss;
-	ss << PhoneBook::contactCount + 1;
+	ss << PhoneBook::contactCount;
 	std::string idStr = ss.str();
 	contact.setId(idStr);
 	PhoneBook::contacts[PhoneBook::contactCount] = contact;
 	PhoneBook::contactCount++;
+	}
 }
 
 std::string truncate(std::string str, size_t width) {
@@ -165,7 +175,7 @@ void PhoneBook::searchContact()
 			  << BBLU << "|" << RST << std::endl;
 	std::cout << BBLU << "+----------------------------------------------+" << RST << std::endl;
 
-	for (int i = 1; i <= contactCount; i++)
+	for (int i = 1; i <= contactCount - 1; i++)
 	{
 		PhoneBook::displayContact(PhoneBook::contacts[i]);
 	}
