@@ -67,17 +67,13 @@ void PhoneBook::addContact()
 		int notValid = 1;
 		while (notValid == 1 && valueField == 1)
 		{
-			
-			while(notValid == 1)
+			std::cout << "Enter the first name: ";
+			std::cin >> firstName;
+			if (validInput(firstName, 1) == 0)
 			{
-				std::cout << "Enter the first name: ";
-				std::cin >> firstName;
-				if (validInput(firstName, 1) == 0)
-				{
-					notValid = 0;
-					contact.setFirstName(firstName);
-					valueField++;
-				}
+				notValid = 0;
+				contact.setFirstName(firstName);
+				valueField++;
 			}
 		
 		}
