@@ -1,21 +1,36 @@
 #include "../include/PhoneBook.hpp"
+#include <cctype>
 
 
 int validInput(std::string &input, int option)
 {
-	if (option == 1)
-	{
-		if (input.length() <= 1 || input.length() >= 30)
+	if (option != 3 && (input.empty() || input.length() <= 1 || input.length() >= 30))
 		{
-			std::cout << "Invalid input! The name must be between 1 and 30 characters" << std::endl;
+			std::cout << BRED << "Invalid input! The name must be between 2 and 30 characters" << RST << std::endl;
 			return (1);
 		}
+	int inputLen = input.length();
+	int notOnlySpaces = 0;
+	for (int i = 0; i < inputLen; i++)
+	{
+		if (notOnlySpaces == 1)
+			break;
+		if (!isspace(input[i]))
+			notOnlySpaces = 1;
+		else
+		{
+			std::cout << BRED << "Invalid input! The field cannot contain only spaces!" << RST << std::endl;
+			return (1);
+		}
+	}
+	if (option == 1)
+	{
 		int inputLen = input.length();
 		for (int i = 0; i < inputLen - 1; i++)
 		{
 			if (!isalpha(input[i]) || isspace(input[i]))
 			{
-				std::cout << "Invalid input! The name must contain only letters!" << std::endl;
+				std::cout << BRED << "Invalid input! The name must contain only letters!" << RST << std::endl;
 				return (1);
 			}
 		}
@@ -24,12 +39,12 @@ int validInput(std::string &input, int option)
 	{
 		if (input.empty() || input.size() < 2 || input.size() >= 30)
 			return (1);
-			std::string::const_iterator it;
+		std::string::const_iterator it;
 		for (it = input.begin(); it != input.end(); it++)
 		{
 			if (!std::isalpha(*it) && !std::isspace(*it))
 			{
-				std::cout << std::endl << RED << "Invalid input! The name must contain only letters and spaces" << RST << std::endl;
+				std::cout << std::endl << BRED << "Invalid input! The name must contain only letters and spaces" << RST << std::endl;
 				return (1);
 			}
 		} 
@@ -38,7 +53,7 @@ int validInput(std::string &input, int option)
 	{
 		if (input.length() <= 1 || input.length() >= 11)
 		{
-			std::cout << std::endl << RED << "Invalid input! The phone number must be between 1 and 10 characters" << RST << std::endl;
+			std::cout << std::endl << BRED << "Invalid input! The phone number must be between 1 and 10 characters" << RST << std::endl;
 			return (1);
 		}
 		int inputLen = input.length();
@@ -46,7 +61,7 @@ int validInput(std::string &input, int option)
 		{
 			if (!isdigit(input[i]) && input[i] != '+' && input[i] != '(' && input[i] != ')')
 			{
-				std::cout << std::endl << RED << "Invalid input! The phone number must contain valid characters, please try again!" << RST << std::endl;
+				std::cout << std::endl << BRED << "Invalid input! The phone number must contain valid characters, please try again!" << RST << std::endl;
 				return (1);
 			}
 		}
