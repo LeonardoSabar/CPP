@@ -73,7 +73,7 @@ void PhoneBook::addContact()
 {
 	Contact contact;
 	std::string id, input, firstName, lastName, nickname, phoneNumber, darkestSecret;
-	if (PhoneBook::contactCount >= 8)
+	if (PhoneBook::contactCount > 8)
 		PhoneBook::contactCount = 1;
 
 	int valueField = 1;
@@ -155,13 +155,14 @@ void PhoneBook::addContact()
 				}
 			}
 		}
-	
 	std::stringstream ss;
 	ss << PhoneBook::contactCount;
 	std::string idStr = ss.str();
 	contact.setId(idStr);
-	PhoneBook::contacts[PhoneBook::contactCount] = contact;
+	PhoneBook::contacts[PhoneBook::contactCount - 1] = contact;
 	PhoneBook::contactCount++;
+	PhoneBook::printCount++;
+	std::cout << BGRN << "Contact added successfully!" << RST << std::endl;
 	}
 }
 
@@ -173,9 +174,9 @@ std::string truncate(std::string str, size_t width) {
 }
 
 void PhoneBook::displayContact(Contact c) {
-	std::cout << BBLU << "|" << RST << std::setw(10) << std::setfill(' ') << truncate(c.getId(), 10) << BBLU << "|" << RST
-			  << BBLU << "|" << RST << std::setw(10) << std::setfill(' ') << truncate(c.getFirstName(), 10) << BBLU << "|" << RST
-			  << BBLU << "|" << RST << std::setw(10) << std::setfill(' ') << truncate(c.getLastName(), 10) << BBLU << "|" << RST
+	std::cout << BBLU << "|" << RST << std::setw(10) << std::setfill(' ') << truncate(c.getId(), 10)		<< BBLU << "|" << RST
+			  << BBLU << "|" << RST << std::setw(10) << std::setfill(' ') << truncate(c.getFirstName(), 10)	<< BBLU << "|" << RST
+			  << BBLU << "|" << RST << std::setw(10) << std::setfill(' ') << truncate(c.getLastName(), 10)	<< BBLU << "|" << RST
 			  << BBLU << "|" << RST << std::setw(10) << std::setfill(' ') << truncate(c.getNickname(), 10)
 			  << BBLU << "|" << RST << std::endl;
 }
@@ -183,17 +184,29 @@ void PhoneBook::displayContact(Contact c) {
 void PhoneBook::searchContact()
 {
 	std::cout << BBLU << "+----------------------------------------------+" << RST << std::endl;
-	std::cout << BBLU << "|" << RST << std::setw(10) << std::setfill(' ') << "Index" << BBLU << "|" << RST
-			  << BBLU << "|" << RST << std::setw(10) << std::setfill(' ') << "First Name" << BBLU << "|" << RST
-			  << BBLU << "|" << RST << std::setw(10) << std::setfill(' ') << "Last Name" << BBLU << "|" << RST
+	std::cout << BBLU << "|" << RST << std::setw(10) << std::setfill(' ') << "Index"		<< BBLU << "|" << RST
+			  << BBLU << "|" << RST << std::setw(10) << std::setfill(' ') << "First Name"	<< BBLU << "|" << RST
+			  << BBLU << "|" << RST << std::setw(10) << std::setfill(' ') << "Last Name"	<< BBLU << "|" << RST
 			  << BBLU << "|" << RST << std::setw(10) << std::setfill(' ') << "Nickname"
 			  << BBLU << "|" << RST << std::endl;
 	std::cout << BBLU << "+----------------------------------------------+" << RST << std::endl;
 
+	while (PhoneBook::contactCount < 1)
+	{
+		std::cout << BRED << "No contacts available!" << RST << std::endl;
+		return;
+	}
+	int idx = 0;
+	while (idx < PhoneBook::printCount)
+	{
+		PhoneBook::displayContact(PhoneBook::contacts[idx]);
+		idx++;
+	}
+	/*
 	for (int i = 1; i <= contactCount - 1; i++)
 	{
 		PhoneBook::displayContact(PhoneBook::contacts[i]);
-	}
+	} */
 	std::string index;
 	std::cout << BBLU << "+----------------------------------------------+" << RST << std::endl;
 	std::cout << "Enter the index of the contact: " << std::endl;
@@ -207,17 +220,17 @@ void PhoneBook::searchContact()
 	std::stringstream ss(index);
 	int indexInt;
 	ss >> indexInt;
-	std::cout << "Index: " << indexInt << std::endl;
-	if (indexInt < 0 || indexInt > contactCount)
+	std::cout << BCYN << "Contact: " << RST << indexInt << std::endl;
+	if (indexInt < 1 || (indexInt + 1) > contactCount + 1)
 	{
 		std::cout << BRED << "Invalid index!" << RST << std::endl << std::endl;
 		return;
 	}
-	Contact c = contacts[indexInt];
-	std::cout << "First Name: " << c.getFirstName() << std::endl;
-	std::cout << "Last Name: " << c.getLastName() << std::endl;
-	std::cout << "Nickname: " << c.getNickname() << std::endl;
-	std::cout << "Phone Number: " << c.getPhoneNumber() << std::endl;
-	std::cout << "Darkest Secret: " << c.getDarkestSecret() << std::endl;
+	Contact c = contacts[indexInt - 1];
+	std::cout << BCYN << "First Name: "		<< RST << c.getFirstName()		<< std::endl;
+	std::cout << BCYN << "Last Name: "		<< RST << c.getLastName()		<< std::endl;
+	std::cout << BCYN << "Nickname: "		<< RST << c.getNickname()		<< std::endl;
+	std::cout << BCYN << "Phone Number: "	<< RST << c.getPhoneNumber()	<< std::endl;
+	std::cout << BCYN << "Darkest Secret: "	<< RST << c.getDarkestSecret()	<< std::endl;
 
 }
