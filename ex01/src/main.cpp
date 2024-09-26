@@ -17,7 +17,6 @@ int	main()
 {
 	PhoneBook	phoneBook;
 	phoneBook.contactCount = 1;
-	phoneBook.printCount = 0;
 	std::string option;
 	while (1)
 	{

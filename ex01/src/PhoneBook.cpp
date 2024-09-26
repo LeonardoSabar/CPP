@@ -1,14 +1,8 @@
 #include "../include/PhoneBook.hpp"
-#include <cctype>
 
 
-int validInput(std::string &input, int option)
+int notOnlySpaces(std::string input)
 {
-	if (option != 3 && (input.empty() || input.length() <= 1 || input.length() >= 30))
-		{
-			std::cout << BRED << "Invalid input! The name must be between 2 and 30 characters" << RST << std::endl;
-			return (1);
-		}
 	int inputLen = input.length();
 	int notOnlySpaces = 0;
 	for (int i = 0; i < inputLen; i++)
@@ -23,6 +17,18 @@ int validInput(std::string &input, int option)
 			return (1);
 		}
 	}
+	return (0);
+}
+
+int validInput(std::string &input, int option)
+{
+	if (option != 3 && (input.empty() || input.length() <= 1 || input.length() >= 30))
+		{
+			std::cout << BRED << "Invalid input! The name must be between 2 and 30 characters" << RST << std::endl;
+			return (1);
+		}
+	if (notOnlySpaces(input) == 1)
+		return (1);
 	if (option == 1)
 	{
 		int inputLen = input.length();
@@ -51,9 +57,9 @@ int validInput(std::string &input, int option)
 	}
 	else if (option == 3)
 	{
-		if (input.length() <= 1 || input.length() >= 11)
+		if (input.length() <= 1 || input.length() >= 13)
 		{
-			std::cout << std::endl << BRED << "Invalid input! The phone number must be between 1 and 10 characters" << RST << std::endl;
+			std::cout << std::endl << BRED << "Invalid input! The phone number must be between 1 and 13 characters" << RST << std::endl;
 			return (1);
 		}
 		int inputLen = input.length();
@@ -85,7 +91,7 @@ void PhoneBook::addContact()
 			std::cin.ignore(1000, '\n');
 			while(notValid == 1)
 			{
-				std::cout << "Enter the first name: ";
+				std::cout << std::endl << BYEL << "Enter the first name: " << RST;
 				std::getline(std::cin, firstName);
 				if (validInput(firstName, 1) == 0)
 				{
@@ -100,7 +106,7 @@ void PhoneBook::addContact()
 			notValid = 1;
 			while(notValid == 1)
 			{
-				std::cout << "Enter the last name: ";
+				std::cout << BYEL << "Enter the last name: " << RST;
 				std::getline(std::cin, lastName);
 				if (validInput(lastName, 2) == 0)
 				{
@@ -115,7 +121,7 @@ void PhoneBook::addContact()
 			notValid = 1;
 			while(notValid == 1)
 			{
-				std::cout << "Enter the nickname: ";
+				std::cout << BYEL << "Enter the nickname: " << RST;
 				std::getline(std::cin, nickname);
 				if (validInput(nickname, 2) == 0)
 				{
@@ -130,7 +136,7 @@ void PhoneBook::addContact()
 			notValid = 1;
 			while(notValid == 1)
 			{
-				std::cout << "Enter the phone number: ";
+				std::cout << BYEL << "Enter the phone number: " << RST;
 				std::getline(std::cin, phoneNumber);
 				if (validInput(phoneNumber, 3) == 0)
 				{
@@ -145,7 +151,7 @@ void PhoneBook::addContact()
 			notValid = 1;
 			while(notValid == 1)
 			{
-				std::cout << "Enter the darkest secret: ";
+				std::cout << BYEL << "Enter the darkest secret: " << RST;
 				std::getline(std::cin, darkestSecret);
 				if (validInput(darkestSecret, 2) == 0)
 				{
@@ -161,7 +167,6 @@ void PhoneBook::addContact()
 	contact.setId(idStr);
 	PhoneBook::contacts[PhoneBook::contactCount - 1] = contact;
 	PhoneBook::contactCount++;
-	PhoneBook::printCount++;
 	std::cout << BGRN << "Contact added successfully!" << RST << std::endl;
 	}
 }
@@ -197,16 +202,9 @@ void PhoneBook::searchContact()
 		return;
 	}
 	int idx = 0;
-	while (idx < PhoneBook::printCount)
-	{
-		PhoneBook::displayContact(PhoneBook::contacts[idx]);
-		idx++;
-	}
-	/*
-	for (int i = 1; i <= contactCount - 1; i++)
-	{
-		PhoneBook::displayContact(PhoneBook::contacts[i]);
-	} */
+	while (idx < 8)
+		PhoneBook::displayContact(PhoneBook::contacts[idx++]);
+
 	std::string index;
 	std::cout << BBLU << "+----------------------------------------------+" << RST << std::endl;
 	std::cout << "Enter the index of the contact: " << std::endl;
