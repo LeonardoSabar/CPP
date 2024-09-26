@@ -6,10 +6,11 @@ void	displayMain()
 	std::cout << BBLU << "+----------------------------------------------+"	<< RST << std::endl;
 	std::cout << std::setw(22) << UNDL << BBLU << "PHONEBOOK"				<< RST << std::endl;
 	std::cout << BBLU << "+----------------------------------------------+"	<< RST << std::endl;
-	std::cout << "Choose one of the following options:" << std::endl;
-	std::cout << BRED << "1 " << RST << BOLD << "- ADD"		<< RST		<< std::endl;
-	std::cout << BRED << "2 " << RST << BOLD << "- SEARCH"	<< RST		<< std::endl;
-	std::cout << BRED << "3 " << RST << BOLD << "- EXIT"	<< RST		<< std::endl;
+	std::cout << BWHT <<"Choose one of the following options:"	<< RST		<< std::endl;
+	std::cout << BRED << "1 " << RST << BOLD << "- ADD"			<< RST		<< std::endl;
+	std::cout << BRED << "2 " << RST << BOLD << "- SEARCH"		<< RST		<< std::endl;
+	std::cout << BRED << "3 " << RST << BOLD << "- EXIT"		<< RST		<< std::endl;
+	std::cout << BYEL << "Enter your option" << BLNK << ": "	<< RST;
 }
 
 
@@ -21,7 +22,6 @@ int	main()
 	while (1)
 	{
 		displayMain();
-		std::cout << std::endl << BRED << "Enter your option" << BLNK << ": " << RST;
 		std::cin >> option;
 			if (option.compare("1") == 0 || option.compare("ADD") == 0)
 				phoneBook.addContact();

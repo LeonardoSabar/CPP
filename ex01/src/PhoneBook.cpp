@@ -22,13 +22,13 @@ int notOnlySpaces(std::string input)
 
 int validInput(std::string &input, int option)
 {
+	if (notOnlySpaces(input) == 1)
+		return (1);
 	if (option != 3 && (input.empty() || input.length() <= 1 || input.length() >= 30))
 		{
 			std::cout << BRED << "Invalid input! The name must be between 2 and 30 characters" << RST << std::endl;
 			return (1);
 		}
-	if (notOnlySpaces(input) == 1)
-		return (1);
 	if (option == 1)
 	{
 		int inputLen = input.length();
