@@ -78,11 +78,11 @@ int validInput(std::string &input, int option)
 void PhoneBook::addContact()
 {
 	Contact contact;
-	std::string id, input, firstName, lastName, nickname, phoneNumber, darkestSecret;
-	if (PhoneBook::contactCount > 8)
-		PhoneBook::contactCount = 1;
-
+	std::string input, firstName, lastName, nickname, phoneNumber, darkestSecret;
+	if (_index > 7)
+		_index = 0;
 	int valueField = 1;
+
 	while (valueField < 6)
 	{
 		int notValid = 1;
@@ -161,14 +161,13 @@ void PhoneBook::addContact()
 				}
 			}
 		}
-	std::stringstream ss;
-	ss << PhoneBook::contactCount;
-	std::string idStr = ss.str();
-	contact.setId(idStr);
-	PhoneBook::contacts[PhoneBook::contactCount - 1] = contact;
-	PhoneBook::contactCount++;
-	std::cout << BGRN << "Contact added successfully!" << RST << std::endl;
 	}
+	contact.setId(_index);
+	PhoneBook::contacts[_index] = contact;
+	_index++;
+	if (PhoneBook::contactCount < 8)
+		PhoneBook::contactCount++;
+	std::cout << BGRN << "Contact added successfully!" << RST << std::endl;
 }
 
 std::string truncate(std::string str, size_t width) {
@@ -179,7 +178,7 @@ std::string truncate(std::string str, size_t width) {
 }
 
 void PhoneBook::displayContact(Contact c) {
-	std::cout << BBLU << "|" << RST << std::setw(10) << std::setfill(' ') << truncate(c.getId(), 10)		<< BBLU << "|" << RST
+	std::cout << BBLU << "|" << RST << std::setw(10) << std::setfill(' ') << c.getId() + 1	<< BBLU << "|" << RST
 			  << BBLU << "|" << RST << std::setw(10) << std::setfill(' ') << truncate(c.getFirstName(), 10)	<< BBLU << "|" << RST
 			  << BBLU << "|" << RST << std::setw(10) << std::setfill(' ') << truncate(c.getLastName(), 10)	<< BBLU << "|" << RST
 			  << BBLU << "|" << RST << std::setw(10) << std::setfill(' ') << truncate(c.getNickname(), 10)
@@ -201,34 +200,25 @@ void PhoneBook::searchContact()
 		std::cout << BRED << "No contacts available!" << RST << std::endl;
 		return;
 	}
-	int idx = 0;
-	while (idx < 8)
-		PhoneBook::displayContact(PhoneBook::contacts[idx++]);
+	int index = 0;
+	while (index < (contactCount))
+		PhoneBook::displayContact(PhoneBook::contacts[index++]);
 
-	std::string index;
+	index = 0;
 	std::cout << BBLU << "+----------------------------------------------+" << RST << std::endl;
 	std::cout << "Enter the index of the contact: " << std::endl;
 	std::cin >> index;
 
-	if (index.length() != 1 || !isdigit(index[0]))
+	if (index < 1 || index > (contactCount))
 	{
 		std::cout << "Invalid input! The index must be a number beetween 1 and 8" << std::endl;
 		return;
 	}
-	std::stringstream ss(index);
-	int indexInt;
-	ss >> indexInt;
-	std::cout << BCYN << "Contact: " << RST << indexInt << std::endl;
-	if (indexInt < 1 || (indexInt + 1) > contactCount + 1)
-	{
-		std::cout << BRED << "Invalid index!" << RST << std::endl << std::endl;
-		return;
-	}
-	Contact c = contacts[indexInt - 1];
-	std::cout << BCYN << "First Name: "		<< RST << c.getFirstName()		<< std::endl;
-	std::cout << BCYN << "Last Name: "		<< RST << c.getLastName()		<< std::endl;
-	std::cout << BCYN << "Nickname: "		<< RST << c.getNickname()		<< std::endl;
-	std::cout << BCYN << "Phone Number: "	<< RST << c.getPhoneNumber()	<< std::endl;
-	std::cout << BCYN << "Darkest Secret: "	<< RST << c.getDarkestSecret()	<< std::endl;
+	std::cout << BCYN << "Contact: " << RST << (index) << std::endl;
+	std::cout << BCYN << "First Name: "		<< RST << contacts[index - 1].getFirstName()		<< std::endl;
+	std::cout << BCYN << "Last Name: "		<< RST << contacts[index - 1].getLastName()		<< std::endl;
+	std::cout << BCYN << "Nickname: "		<< RST << contacts[index - 1].getNickname()		<< std::endl;
+	std::cout << BCYN << "Phone Number: "	<< RST << contacts[index - 1].getPhoneNumber()	<< std::endl;
+	std::cout << BCYN << "Darkest Secret: "	<< RST << contacts[index - 1].getDarkestSecret()	<< std::endl;
 
 }

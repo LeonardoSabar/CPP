@@ -17,11 +17,12 @@ void	displayMain()
 int	main()
 {
 	PhoneBook	phoneBook;
-	phoneBook.contactCount = 1;
 	std::string option;
 	while (1)
 	{
 		displayMain();
+		std::clearerr(stdin);
+		std::cin.clear();
 		std::cin >> option;
 			if (option.compare("1") == 0 || option.compare("ADD") == 0)
 				phoneBook.addContact();
