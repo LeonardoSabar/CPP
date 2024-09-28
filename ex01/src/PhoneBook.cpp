@@ -36,7 +36,7 @@ int validInput(std::string &input, int option)
 		{
 			if (!isalpha(input[i]) || isspace(input[i]))
 			{
-				std::cout << BRED << "Invalid input! The name must contain only letters!" << RST << std::endl;
+				std::cout << BRED << "Invalid input! The name must contain only letters an no spaces!" << RST << std::endl;
 				return (1);
 			}
 		}
@@ -50,22 +50,22 @@ int validInput(std::string &input, int option)
 		{
 			if (!std::isalpha(*it) && !std::isspace(*it))
 			{
-				std::cout << std::endl << BRED << "Invalid input! The name must contain only letters and spaces" << RST << std::endl;
+				std::cout << std::endl << BRED << "Invalid input! The name must contain only letters and spaces!" << RST << std::endl;
 				return (1);
 			}
-		} 
+		}
 	}
 	else if (option == 3)
 	{
-		if (input.length() <= 1 || input.length() >= 13)
+		if (input.length() <= 1 || input.length() >= 15)
 		{
-			std::cout << std::endl << BRED << "Invalid input! The phone number must be between 1 and 13 characters" << RST << std::endl;
+			std::cout << std::endl << BRED << "Invalid input! The phone number must be between 1 and 15 characters!" << RST << std::endl;
 			return (1);
 		}
 		int inputLen = input.length();
 		for (int i = 0; i < inputLen; i++)
 		{
-			if (!isdigit(input[i]) && input[i] != '+' && input[i] != '(' && input[i] != ')')
+			if (!isdigit(input[i]) && input[i] != '+' && input[i] != '(' && input[i] != ')' && input[i] != '-' && input[i] != ' ')
 			{
 				std::cout << std::endl << BRED << "Invalid input! The phone number must contain valid characters, please try again!" << RST << std::endl;
 				return (1);
