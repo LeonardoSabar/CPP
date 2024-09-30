@@ -5,9 +5,8 @@
 #include <string>
 #include <iomanip>
 #include <sstream>
+// #include <cctype>
 #include "utils.hpp"
-
-
 
 class Contact
 {
@@ -19,22 +18,20 @@ class Contact
 		std::string	phoneNumber;
 		std::string	darkestSecret;
 	public:
-		//Setters and Getters
+		//Getters
 		std::string	getId();
 		std::string	getFirstName();
 		std::string	getLastName();
 		std::string	getNickname();
 		std::string	getPhoneNumber();
 		std::string	getDarkestSecret();
-
+		//Setters
 		void	setId(std::string id);
 		void	setFirstName(std::string firstName);
 		void	setLastName(std::string lastName);
 		void	setNickname(std::string nickname);
 		void	setPhoneNumber(std::string phoneNumber);
 		void	setDarkestSecret(std::string darkestSecret);
-
-		// void	displayContact();
 };
 
 class PhoneBook
@@ -49,6 +46,5 @@ class PhoneBook
 };
 
 void	displayMain();
-
 
 #endif
