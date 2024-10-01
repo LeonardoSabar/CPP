@@ -8,6 +8,7 @@ HEADERS		:= -I ./include
 SRCS		:= $(addprefix $(SRCS_PATH), \
 				PhoneBook.cpp \
 				main.cpp \
+				Utils.cpp \
 				Contact.cpp)
 
 OBJS		:= $(SRCS:$(SRCS_PATH)%.cpp=obj/%.o)
