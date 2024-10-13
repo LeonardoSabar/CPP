@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.cpp                                          :+:      :+:    :+:   */
+/*   Utils.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: leobarbo <leobarbo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 21:32:11 by leobarbo          #+#    #+#             */
-/*   Updated: 2024/09/30 21:32:11 by leobarbo         ###   ########.fr       */
+/*   Updated: 2024/10/13 13:20:47 by leobarbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int notOnlySpaces(std::string input)
 {
-	int i = 0;
-	for (int i = 0; i < input.length(); i++)
+	for (size_t i = 0; i < input.length(); i++)
 	{
 		if (input[i] != ' ')
 			return (0);
@@ -26,62 +25,66 @@ int notOnlySpaces(std::string input)
 
 int validInput(std::string &input, int option)
 {
-    if (notOnlySpaces(input) == 1)
-        return (1);
+	if (notOnlySpaces(input) == 1)
+		return (1);
 
-    switch (option)
-    {
-        case 1:
-            if (input.empty() || input.length() <= 1 || input.length() >= 30)
-            {
-                std::cout << BRED << "Invalid input! The name must be between 2 and 30 characters" << RST << std::endl;
-                return (1);
-            }
-            for (char c : input)
-            {
-                if (!isalpha(c) || isspace(c))
-                {
-                    std::cout << BRED << "Invalid input! The name must contain only letters and no spaces!" << RST << std::endl;
-                    return (1);
-                }
-            }
-            break;
+	switch (option)
+	{
+		case 1:
+			if (input.empty() || input.length() <= 1 || input.length() >= 30)
+			{
+				std::cout << BRED << "Invalid input! The name must be between 2 and 30 characters" << RST << std::endl;
+				return (1);
+			}
+			for (size_t i = 0; i < input.size(); ++i)
+			{
+				char c = input[i];
+				if (!isalpha(c) || isspace(c))
+				{
+					std::cout << BRED << "Invalid input! The name must contain only letters and no spaces!" << RST << std::endl;
+					return 1;
+				}
+			}
 
-        case 2:
-            if (input.empty() || input.length() < 2 || input.length() >= 30)
-            {
-                std::cout << BRED << "Invalid input! The input must be between 2 and 30 characters" << RST << std::endl;
-                return (1);
-            }
-            for (char c : input)
-            {
-                if (!std::isalpha(c) && !std::isspace(c))
-                {
-                    std::cout << BRED << "Invalid input! The input must contain only letters and spaces!" << RST << std::endl;
-                    return (1);
-                }
-            }
-            break;
+			break;
 
-        case 3:
-            if (input.length() <= 2 || input.length() >= 15)
-            {
-                std::cout << BRED << "Invalid input! The phone number must be between 2 and 15 characters!" << RST << std::endl;
-                return (1);
-            }
-            for (char c : input)
-            {
-                if (!isdigit(c) && c != '+' && c != '(' && c != ')' && c != '-' && c != ' ')
-                {
-                    std::cout << BRED << "Invalid input! The phone number must contain valid characters!" << RST << std::endl;
-                    return (1);
-                }
-            }
-            break;
+		case 2:
+			if (input.empty() || input.length() < 2 || input.length() >= 30)
+			{
+				std::cout << BRED << "Invalid input! The input must be between 2 and 30 characters" << RST << std::endl;
+				return (1);
+			}
+			for (size_t i = 0; i < input.size(); ++i)
+{
+			char c = input[i];
+			if (!std::isalpha(c) && !std::isspace(c))
+			{
+				std::cout << BRED << "Invalid input! The input must contain only letters and spaces!" << RST << std::endl;
+				return 1;
+			}
+		}
+			break;
 
-        default:
-            std::cout << BRED << "Invalid option!" << RST << std::endl;
-            return (1);
-    }
-    return (0);
+		case 3:
+			if (input.length() <= 2 || input.length() >= 15)
+			{
+				std::cout << BRED << "Invalid input! The phone number must be between 2 and 15 characters!" << RST << std::endl;
+				return (1);
+			}
+			for (size_t i = 0; i < input.size(); ++i)
+			{
+				char c = input[i];
+				if (!std::isdigit(c) && c != '+' && c != '(' && c != ')' && c != '-' && c != ' ')
+				{
+					std::cout << BRED << "Invalid input! The phone number must contain valid characters!" << RST << std::endl;
+					return 1;
+				}
+			}
+			break;
+
+		default:
+			std::cout << BRED << "Invalid option!" << RST << std::endl;
+			return (1);
+	}
+	return (0);
 }
